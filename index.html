@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background:
+                linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                url('obmc.png');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-box {
+            width: 520px;
+            padding: 40px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .logo {
+            width: 120px;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .title {
+            font-weight: bold;
+            color: #2b5797;
+            margin-bottom: 20px;
+        }
+
+        label {
+            text-align: left;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .btn-login {
+            background-color: #4c79c9;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .btn-login:hover {
+            background-color: #2b5797;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <div class="login-box">
+
+        <img src="LOGO.png" class="logo">
+
+        <div class="title">
+            OPERATION BROTHERHOOD<br>
+            MONTESSORI CENTER
+        </div>
+
+        <button class="btn btn-secondary btn-sm mb-2" onclick="showInstruction()">Instruction</button>
+        <p id="instruction"></p>
+
+        <label>ID Number:</label>
+        <input type="text" id="idnum" class="form-control mb-2" placeholder="Input ID Number">
+
+        <label>Password:</label>
+        <input type="password" id="pass" class="form-control mb-3" placeholder="Input Password">
+
+        <button class="btn btn-login w-100" onclick="login()">LOG IN</button>
+
+        <p id="result" class="mt-3"></p>
+
+    </div>
+</div>
+
+<script>
+    var correctID = "697141204";
+    var correctPass = "vjHf8J)502*";
+    var tries = 3;
+
+    function showInstruction() {
+        document.getElementById("instruction").innerHTML =
+        "Only 3 attempts allowed. Enter correct ID Number and Password.";
+    }
+
+    function login() {
+
+        var id = document.getElementById("idnum").value;
+        var pass = document.getElementById("pass").value;
+
+        if (tries > 0) {
+
+            if (id == correctID && pass == correctPass) {
+                alert("Login successful!");
+                document.getElementById("result").innerHTML = "Welcome!";
+                window.location.href = 'dashboard.html';
+            } else {
+                tries--;
+                alert("Wrong! Attempts left: " + tries);
+                document.getElementById("result").innerHTML =
+                "Wrong credentials. Attempts left: " + tries;
+            }
+
+        } else {
+            alert("No more attempts!");
+            document.getElementById("result").innerHTML =
+            "You are locked out!";
+        }
+    }
+
+
+</script>
+
+</body>
+</html>
